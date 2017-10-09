@@ -63,8 +63,8 @@ round = {
         round.type +
         "&token=" + session.token["token"]
         },
-     
 };
+
 
 //================html changing functions====================
 function fillCategories(){
@@ -120,9 +120,7 @@ function roundOver(){
 
 };
 
-
 //=======================BUTTON PRESS FUNCTIONS====================
-
 function catBtnPress(ev){ //executes runs every time a category button is pressed
     //remove the selected class from the previously clicked category button
     $("#" + last_clicked.cat).removeClass("selected");
@@ -177,7 +175,6 @@ function ansBtnPress(ev){//executes everytime an answer div is clicked
 
 
 };
-
 
 //=======================GAME FUNCTIONS===========================
 function startRound(){
@@ -262,8 +259,6 @@ function wrongAnswer(ans){
     }, 3000);
 };
 
-
-
 //========this function is copied straight from stack overflow, it is used to shuffle an array =========
 function shuffle(a) {
     for (let i = a.length; i; i--) {
@@ -271,7 +266,6 @@ function shuffle(a) {
         [a[i - 1], a[j]] = [a[j], a[i - 1]];
     }
 };
-
 
 $(document).ready(function(){
     //generate session token for trivia database api url;
@@ -285,5 +279,3 @@ $(document).ready(function(){
         ansBtnPress(ev);
     });
 });
-
-

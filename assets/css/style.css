@@ -27,18 +27,12 @@ colors {
     background-color: #28464B !important;
 }
 
-
-
 .jumbotron{
     background-color: #bbc5aa;
 }
 
 #main {
     position: relative;
-}
-
-#answer_container {
-    /* text-align: center; */
 }
 
 .answer {

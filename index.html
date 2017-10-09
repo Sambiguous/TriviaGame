@@ -13,36 +13,89 @@
     <link rel="stylesheet" href="assets/css/style.css" type="text/css"/>
 </head>
 <body>
+    <!-- Page header -->
     <div class="container">
         <div class="row">
             <div class="header">
                 <div class="jumbotron">
-                    <h1>Trivia Time</h1>
-                </div>
-            </div>
-        </div>
-        <div class="row" id="main">
-            <div id="start_overlay">
-                <div id="color">
-                    <div>
-                        <button type="button" class="btn-lg" id="start" onclick="newRound()">Begin</button>
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <h1>Trivia Time</h1>
+                        </div>
+                        <div class="col-xs-4"></div>
+                        <div class="col-xs-4" id="stats"></div>
                     </div>
                 </div>
-                
             </div>
         </div>
+
+    <!-- main body of page, shows timer, questions, answers, and overlay -->
+        <div class="row" id="main">
+            <div class="col-xs-12 text-center" id="question">
+                <h2>How much wood could a woodchuck chuck if a woodchuck could chuck wood?</h2>
+            </div>
+            <div class="col-xs-12" id="answers_container">
+                <!-- 'spacer' class is used here because I somehow broke 'col-xs-offset-3'
+                it worked originally, and then stopped working -->
+                <div class="row">
+                    <div class="col-xs-3 spacer"></div>
+                    <div id="ans1" class="col-xs-6 col-xs-offset-3 answer">
+                        <h4>8 wood</h4>
+                    </div>
+                    <div class="col-xs-3 spacer"></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3 spacer"></div>
+                    <div id="ans2" class="col-xs-6 answer">
+                        <h4>19 wood</h4>
+                    </div>
+                    <div class="col-xs-3 spacer"></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3 spacer"></div>
+                    <div id="ans3" class="col-xs-6 answer">
+                        <h4>23 wood</h4>
+                    </div>
+                    <div class="col-xs-3 spacer"></div>
+                </div> 
+                <div class="row">
+                    <div class="col-xs-3 spacer"></div>
+                    <div id="ans4" class="col-xs-6 answer">
+                        <h4>37 wood</h4>
+                    </div>
+                    <div class="col-xs-3 spacer"></div>
+                </div>         
+            </div> <!-- end answers_container -->
+            <div class="col-xs-12 text-center" id="timer_container">
+                <h3 id="timer"></h3>
+            </div>
+
+            <!-- Overlays that appears on page load and between rounds -->
+            <div id="overlay">
+                <div id="overlay_color">
+                    <div class="overlay_container" id="overlay_left">
+                        <div class="pre-scrollable" id="categories">
+                            <!-- topics populated via javascript --> 
+                        </div> 
+                    </div>   
+                    <div class="overlay_container" id="overlay_right">
+                        <div id="overlay_table">
+                            <div id="diffs" >
+                                <!-- Difficulty buttons -->
+                                <button type="button" class="btn btn-lg diff-btn" id="easy" onclick="diffBtnPress(event)">Easy</button>
+                                <button type="button" class="btn btn-lg diff-btn" id="medium" onclick="diffBtnPress(event)">Meduim</button>
+                                <button type="button" class="btn btn-lg diff-btn" id="hard" onclick="diffBtnPress(event)">Hard</button>
+                            </div>
+                            <div>
+                                <!-- Start button -->
+                                <button type="button" class="btn btn-lg" id="start" onclick="startRound()">Start</button>
+                            </div>
+                        </div> 
+                    </div>
+                </div>  
+            </div> <!-- end #overlay -->
+        </div> <!-- end #main -->
     </div>
-
-
-
-
-
-
-
-
-
-
-
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

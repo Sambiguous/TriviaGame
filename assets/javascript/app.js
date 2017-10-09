@@ -60,9 +60,9 @@ round = {
         round.amount +
         round.category +
         round.difficulty +
-        round.type
-    },
-        //"&token=" + session.token["token"];  
+        round.type +
+        "&token=" + session.token["token"]
+        },
      
 };
 

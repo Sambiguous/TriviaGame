@@ -1,7 +1,7 @@
 var ansTimer;
 var cooldown = false;
 
-//stores the categories and their associated number for use in building a url
+//stores the categories and their associated id for use in building a url
 categories = {};
 
 //stores the id of the previously clicked button of a certain type
@@ -187,17 +187,15 @@ function startRound(){
     //delete stats if they are there
     $("#stats").html("");
 
-    //MAKE THE FREAKING API CALL...FINALLY
+    //make api call that will return array of question/answer objects
     $.ajax({url: round_url, method: "GET"}).done(function(response){
-        console.log(response["response_code"]);
         if(response["response_code"] == 0){
             round.setQandA(response["results"]);
-            console.log(round.questions_and_answers);
             $("#overlay").hide();
             startTimer();
             displayQuestion(round.questions_and_answers[0]);
         }
-        else{alert("I'm sorry, Open Trivia database is having trouble with that category right now, please select a different one")};
+        else{alert("Sorry, Open Trivia Database is having trouble with that category right now, please select a different one")};
     });
 };
 
@@ -213,7 +211,7 @@ function startTimer(){
     }, 1000);
 };
 
-function resetRound(){// resets round back to default values
+function resetRound(){// resets round object back to default values
     round.category = "";
     round.difficulty = "";
     round.final_url = "";
@@ -224,11 +222,18 @@ function resetRound(){// resets round back to default values
     round.q_index = 0;
 };
 
-function rightAnswer(){
+function rightAnswer(){//executes every time user guesses a correct answer
+    //increment appropriate round properties
     round.correct ++;
     round.q_index ++;
+
+    //clear the answer timer
     clearInterval(ansTimer);
+
+    //display message
     $("#timer").html("That's Correct!");
+
+    //wait 3 seconds, then restart the answer timer and display next question
     setTimeout(function(){
         cooldown = false;
         if(round.q_index < round.questions_and_answers.length){
@@ -241,11 +246,18 @@ function rightAnswer(){
     }, 3000);
 };
 
-function wrongAnswer(ans){
+function wrongAnswer(ans){//executes every time user guesses an incorrect answer
+    //increment appropriate round properties
     round.incorrect ++;
     round.q_index ++;
+
+    //clear the answer timer
     clearInterval(ansTimer);
+
+    //display message
     $("#timer").html("Sorry, the correct answer was " + ans);
+
+    //wait 3 seconds, then restart the answer timer and display next question
     setTimeout(function(){
         cooldown = false;
         if(round.q_index < round.questions_and_answers.length){
@@ -259,7 +271,7 @@ function wrongAnswer(ans){
     }, 3000);
 };
 
-//========Function copied from stack overflow. It uses dark magic to shuffle an array=========
+//========Function copied from stack overflow. Uses dark magic to shuffle array=========
 function shuffle(a) {
     for (let i = a.length; i; i--) {
         let j = Math.floor(Math.random() * i);
